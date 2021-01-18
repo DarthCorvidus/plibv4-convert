@@ -1,0 +1,19 @@
+plibv4/Convert
+
+The purpose of convert is to serve as a framework to convert one format into
+another, say, 2020-12-31 to 31.12.2020 or 12/31/2020.
+
+Other classes which work with input can request implementations of Convert to
+do internal conversion, say, a user entering 31.12.2020 which is then converted
+to 2020-12-31 for storage in SQL.
+I'd advise to use Validate before using Convert, in order to have reasonable
+values to begin with.
+
+Note that Convert is supposed to work on strings and return strings (or scalar
+ values, depending on your strict settings), not objects or arrays.
+
+Examples:
+-ConvertTime, which converts between seconds, HH:MM:SS and decimal values, ie
+ 10:30 => 10.5.
+-ConvertDate, which converts gregorian dates between ISO 8601, German and US.
+
