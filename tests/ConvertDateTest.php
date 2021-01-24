@@ -13,11 +13,11 @@ use PHPUnit\Framework\TestCase;
  * @author hm
  */
 class ConvertDateTest extends TestCase {
-	function testConstructWrongFrom() {
+	function testConstructInvalidFromFormat() {
 		$this->expectException(InvalidArgumentException::class);
 		new ConvertDate(15, ConvertTime::HMS);
 	}
-	function testConstructWrongTo() {
+	function testConstructInvalidToFormat() {
 		$this->expectException(InvalidArgumentException::class);
 		new ConvertDate(ConvertTime::HMS, 15);
 	}
@@ -30,11 +30,11 @@ class ConvertDateTest extends TestCase {
 		$this->assertEquals(array("2020", "07", "05"), ConvertDate::toArray(ConvertDate::GERMAN, "05.07.2020"));
 	}
 
-	function testToArrayFromUS() {
+	function testToArrayFromUs() {
 		$this->assertEquals(array("2020", "07", "05"), ConvertDate::toArray(ConvertDate::US, "07/05/2020"));
 	}
 	
-	function testToResultISO() {
+	function testToResultIso() {
 		$this->assertEquals("2020-07-05", ConvertDate::toResult(ConvertDate::ISO, array("2020", "07", "05")));
 	}
 
@@ -42,7 +42,7 @@ class ConvertDateTest extends TestCase {
 		$this->assertEquals("05.07.2020", ConvertDate::toResult(ConvertDate::GERMAN, array("2020", "07", "05")));
 	}
 
-	function testToResultUS() {
+	function testToResultUs() {
 		$this->assertEquals("07/05/2020", ConvertDate::toResult(ConvertDate::US, array("2020", "07", "05")));
 	}
 	
@@ -56,7 +56,7 @@ class ConvertDateTest extends TestCase {
 		$this->assertEquals("05.07.2020", $convert->convert("2020-07-05"));
 	}
 	
-	function testIsoToUS() {
+	function testIsoToUs() {
 		$convert = new ConvertDate(ConvertDate::ISO, ConvertDate::US);
 		$this->assertEquals("07/05/2020", $convert->convert("2020-07-05"));
 	}
