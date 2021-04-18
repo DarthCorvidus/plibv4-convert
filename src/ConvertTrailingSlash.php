@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @copyright (c) 2021, Claus-Christoph Küthe
+ * @author Claus-Christoph Küthe <floss@vm01.telton.de>
+ * @license LGPL
+ */
+
+/**
+ * Convert Trailing Slash
+ * 
+ * Paths like /mnt/usb-drive//final/ do not look nice, and paths like
+ * /mnt/usb-drivefinal are not nice either ;-). ConvertTrailingSlash removes
+ * or adds trailing slashes from/to paths.
+ */
+class ConvertTrailingSlash implements Convert {
+	const REMOVE = 1;
+	const ADD = 2;
+	private $format;
+	/**
+	 * 
+	 * @param int $format add or remove slashes.
+	 */
+	function __construct(int $format = self::REMOVE) {
+		Assert::isEnum($format, array(self::REMOVE, self::ADD));
+		$this->format = $format;
+	}
+	
+	/**
+	 * convertRemove
+	 * 
+	 * Removes trailing slashes.
+	 * @param string $convertee
+	 * @return array
+	 */
+	private function convertRemove(string $convertee) {
+		$matches = array();
+		preg_match("/^(.*)\/*$/U", $convertee, $matches);
+	return $matches[1];
+	}
+
+	/**
+	 * Convert
+	 * 
+	 * Convert function as such. If ADD is used, first slashes will be removed
+	 * and one will be added.
+	 * @param string $convertee
+	 * @return string
+	 */
+	function convert(string $convertee): string {
+		if($this->format===self::REMOVE) {
+			return $this->convertRemove($convertee);
+		}
+		if($this->format===self::ADD) {
+			return $this->convertRemove($convertee)."/";
+		}
+	}
+}
