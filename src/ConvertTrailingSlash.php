@@ -1,13 +1,14 @@
 <?php
-
 /**
+ * Add or remove trailing slashes
+ * 
  * @copyright (c) 2021, Claus-Christoph Küthe
  * @author Claus-Christoph Küthe <floss@vm01.telton.de>
  * @license LGPL
  */
 
 /**
- * Convert Trailing Slash
+ * ConvertTrailingSlash
  * 
  * Paths like /mnt/usb-drive//final/ do not look nice, and paths like
  * /mnt/usb-drivefinal are not nice either ;-). ConvertTrailingSlash removes
@@ -16,10 +17,15 @@
 class ConvertTrailingSlash implements Convert {
 	const REMOVE = 1;
 	const ADD = 2;
-	private $format;
 	/**
 	 * 
+	 * @var int contains desired format
+	 */
+	private $format;
+	/**
+	 * Construct with format, defaults to self::REMOVE.
 	 * @param int $format add or remove slashes.
+	 * @throws InvalidArgumentException Thrown if $format is not ConvertTrailingSlash::ADD or ConvertTrailingSlash::REMOVE
 	 */
 	function __construct(int $format = self::REMOVE) {
 		Assert::isEnum($format, array(self::REMOVE, self::ADD));

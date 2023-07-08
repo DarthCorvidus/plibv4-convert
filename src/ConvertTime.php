@@ -1,5 +1,15 @@
 <?php
 /**
+ * Time conversion class
+ * 
+ * @copyright (c) 2029, Claus-Christoph Küthe
+ * @author Claus-Christoph Küthe <plibv4@vm01.telton.de>
+ * @license LGPLv2.1
+ */
+
+/**
+ * ConvertTime
+ * 
  * Converts time from one format to another.
  * Supported formats are: 
  * 
@@ -8,8 +18,6 @@
  * * seconds (ConvertTime::SECONDS)
  * 
  * Supports negative values such as -09:02:17.
- * @author Claus-Christoph Kuethe
- * @copyright (c) year, John Doe
  */
 class ConvertTime implements Convert {
 	/** Time as seconds */
