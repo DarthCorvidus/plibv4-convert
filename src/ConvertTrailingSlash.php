@@ -37,9 +37,9 @@ class ConvertTrailingSlash implements Convert {
 	 * 
 	 * Removes trailing slashes.
 	 * @param string $convertee
-	 * @return array
+	 * @return string
 	 */
-	private function convertRemove(string $convertee) {
+	private function convertRemove(string $convertee): string {
 		$matches = array();
 		preg_match("/^(.*)\/*$/U", $convertee, $matches);
 	return $matches[1];
@@ -60,5 +60,7 @@ class ConvertTrailingSlash implements Convert {
 		if($this->format===self::ADD) {
 			return $this->convertRemove($convertee)."/";
 		}
+	// should not happen.
+	throw new \RuntimeException("invalid format");
 	}
 }

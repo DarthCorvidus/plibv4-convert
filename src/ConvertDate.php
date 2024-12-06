@@ -33,18 +33,12 @@ class ConvertDate implements Convert {
 		$this->from = $from;
 	}
 	
-	private function validConstant(int $constant, string $name) {
-		if(!in_array($constant, array(self::ISO, self::GERMAN, self::US))) {
-			throw new InvalidArgumentException($constant." is not an expected value for \$".$name);
-		}
-	}
-	
 	/**
 	 * Transforms string into array.
 	 * Array contains three entries year, month, day.
 	 * @param int $from source format
 	 * @param string $convertee date as string in source format
-	 * @return array year, month, day
+	 * @return list<string> year, month, day
 	 */
 	static function toArray(int $from, string $convertee): array {
 		Assert::isClassConstant(get_class(), $from, "from");
@@ -59,6 +53,7 @@ class ConvertDate implements Convert {
 			$exp = explode("/", $convertee);
 		return array($exp[2], $exp[0], $exp[1]);
 		}
+	throw new \RuntimeException("unknown date format");
 	}
 
 	/**
@@ -66,23 +61,23 @@ class ConvertDate implements Convert {
 	 * Takes array containing year, month, day and returns target format. Please
 	 * note that target format will always have leading zeroes where applicable.
 	 * @param int $to target format.
-	 * @param array $iso array containing year, month, day.
+	 * @param list<int|string> $iso array containing year, month, day.
 	 * @return string date formatted as target format.
 	 */
 	static function toResult(int $to, array $iso): string {
 		Assert::isClassConstant(get_class(), $to, "to");
 		if($to==self::ISO) {
-			return sprintf("%d-%02d-%02d", $iso[0], $iso[1], $iso[2]);
+			return sprintf("%d-%02d-%02d", (int)$iso[0], (int)$iso[1], (int)$iso[2]);
 		}
 		
 		if($to==self::GERMAN) {
-			return sprintf("%02d.%02d.%d", $iso[2], $iso[1], $iso[0]);
+			return sprintf("%02d.%02d.%d", (int)$iso[2], (int)$iso[1], (int)$iso[0]);
 		}
 
 		if($to==self::US) {
-			return sprintf("%02d/%02d/%d", $iso[1], $iso[2], $iso[0]);
+			return sprintf("%02d/%02d/%d", (int)$iso[1], (int)$iso[2], (int)$iso[0]);
 		}
-
+	throw new \RuntimeException("unknown date format");
 	}
 
 	/**

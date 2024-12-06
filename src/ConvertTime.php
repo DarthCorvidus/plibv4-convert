@@ -48,24 +48,24 @@ class ConvertTime implements Convert {
 	 */
 	private function toSeconds(string $convertee):int {
 		if($this->from==self::SECONDS) {
-			return $convertee;
+			return (int)$convertee;
 		}
 		if($this->from==self::DECIMAL) {
-			return round($convertee*3600);
+			return (int)round((float)$convertee*3600);
 		}
 		$factor = 1;
 		$exp = explode(":", $convertee);
 		if($exp[0]<0) {
 			$factor = -1;
 		}
-		$seconds  = ($exp[0]*3600)*$factor;
+		$seconds  = ((int)$exp[0]*3600)*$factor;
 		if(isset($exp[1])) {
-			$seconds += $exp[1]*60;
+			$seconds += (int)$exp[1]*60;
 		}
 		if(isset($exp[2])) {
-			$seconds += $exp[2];
+			$seconds += (int)$exp[2];
 		}
-	return $seconds*$factor;
+	return (int)($seconds*$factor);
 	}
 	
 	/**
@@ -76,11 +76,11 @@ class ConvertTime implements Convert {
 	 */
 	private function toResult(int $seconds): string {
 		if($this->to==self::SECONDS) {
-			return $seconds;
+			return (string)$seconds;
 		}
 		
 		if($this->to==self::DECIMAL) {
-			return $seconds/3600;
+			return (string)($seconds/3600);
 		}
 		$sign = "";
 		/*

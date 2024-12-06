@@ -19,6 +19,7 @@ interface Convert {
 	/**
 	 * Convert string from one format to another.
 	 * 
+	 * @psalm-suppress PossiblyUnusedMethod
 	 * @param string $convertee string to be converted
 	 */
 	public function convert(string $convertee): string;
