@@ -27,8 +27,8 @@ class ConvertDate implements Convert {
 	 * @throws InvalidArgumentException if to or from are not a class constant
 	 */
 	function __construct(int $from, int $to) {
-		Assert::isClassConstant(get_class(), $to, "to");
-		Assert::isClassConstant(get_class(), $from, "from");
+		Assert::isClassConstant(self::class, $to, "to");
+		Assert::isClassConstant(self::class, $from, "from");
 		$this->to = $to;
 		$this->from = $from;
 	}
@@ -41,7 +41,7 @@ class ConvertDate implements Convert {
 	 * @return list<string> year, month, day
 	 */
 	static function toArray(int $from, string $convertee): array {
-		Assert::isClassConstant(get_class(), $from, "from");
+		Assert::isClassConstant(self::class, $from, "from");
 		if($from==self::ISO) {
 			return explode("-", $convertee);
 		}
@@ -65,7 +65,7 @@ class ConvertDate implements Convert {
 	 * @return string date formatted as target format.
 	 */
 	static function toResult(int $to, array $iso): string {
-		Assert::isClassConstant(get_class(), $to, "to");
+		Assert::isClassConstant(self::class, $to, "to");
 		if($to==self::ISO) {
 			return sprintf("%d-%02d-%02d", (int)$iso[0], (int)$iso[1], (int)$iso[2]);
 		}
