@@ -60,10 +60,6 @@ final class ConvertTrailingSlash implements Convert {
 		if($this->format===self::REMOVE) {
 			return $this->convertRemove($convertee);
 		}
-		if($this->format===self::ADD) {
-			return $this->convertRemove($convertee)."/";
-		}
-	// should not happen.
-	throw new \RuntimeException("invalid format");
+	return $this->convertRemove($convertee)."/";
 	}
 }
