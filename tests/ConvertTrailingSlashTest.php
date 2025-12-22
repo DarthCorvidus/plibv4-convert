@@ -13,13 +13,13 @@ use PHPUnit\Framework\TestCase;
  * 
  * Unit Test for ConvertTrailingSlash.
  */
-class ConvertTrailingSlashTest extends TestCase {
+final class ConvertTrailingSlashTest extends TestCase {
 	/**
 	 * Remove Slash
-	 * 
+	 *
 	 * Remove trailing slash from path.
 	 */
-	function testRemoveSlash() {
+	function testRemoveSlash(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::REMOVE);
 		$convertee = "/mnt/usb-drive/";
 		$target = "/mnt/usb-drive";
@@ -28,10 +28,10 @@ class ConvertTrailingSlashTest extends TestCase {
 	
 	/**
 	 * Remove slashes
-	 * 
+	 *
 	 * Remove several trailing slashes from path.
 	 */
-	function testRemoveSlashes() {
+	function testRemoveSlashes(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::REMOVE);
 		$convertee = "/mnt/usb-drive////";
 		$target = "/mnt/usb-drive";
@@ -40,11 +40,11 @@ class ConvertTrailingSlashTest extends TestCase {
 
 	/**
 	 * Ignore Non Existing
-	 * 
+	 *
 	 * Do not harm, insult, maim, kill or negatively impact paths in any way
 	 * that do not have a trailing slash.
 	 */
-	function testIgnoreNonExisting() {
+	function testIgnoreNonExisting(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::REMOVE);
 		$convertee = "/mnt/usb-drive";
 		$target = "/mnt/usb-drive";
@@ -53,10 +53,10 @@ class ConvertTrailingSlashTest extends TestCase {
 	
 	/**
 	 * Remove root
-	 * 
+	 *
 	 * Turn a single slash into an empty string.
 	 */
-	function testRemoveRoot() {
+	function testRemoveRoot(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::REMOVE);
 		$convertee = "/";
 		$target = "";
@@ -65,10 +65,10 @@ class ConvertTrailingSlashTest extends TestCase {
 
 	/**
 	 * Add Slash
-	 * 
+	 *
 	 * Add trailing slash if none exists.
 	 */
-	function testAddSlash() {
+	function testAddSlash(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::ADD);
 		$convertee = "/mnt/usb-drive";
 		$target = "/mnt/usb-drive/";
@@ -77,10 +77,10 @@ class ConvertTrailingSlashTest extends TestCase {
 
 	/**
 	 * Add Slash If Exists
-	 * 
+	 *
 	 * Do nothing.
 	 */
-	function testAddSlashIfExists() {
+	function testAddSlashIfExists(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::ADD);
 		$convertee = "/mnt/usb-drive/";
 		$target = "/mnt/usb-drive/";
@@ -89,10 +89,10 @@ class ConvertTrailingSlashTest extends TestCase {
 
 	/**
 	 * Add Slash if Several exist
-	 * 
+	 *
 	 * Actually remove unnecessary slashes.
 	 */
-	function testAddSlashIfSeveralExist() {
+	function testAddSlashIfSeveralExist(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::ADD);
 		$convertee = "/mnt/usb-drive//";
 		$target = "/mnt/usb-drive/";
@@ -101,10 +101,10 @@ class ConvertTrailingSlashTest extends TestCase {
 	
 	/**
 	 * Add Root
-	 * 
+	 *
 	 * Turn an empty string into a single slash.
 	 */
-	function testAddRoot() {
+	function testAddRoot(): void {
 		$convert = new ConvertTrailingSlash(ConvertTrailingSlash::ADD);
 		$convertee = "";
 		$target = "/";

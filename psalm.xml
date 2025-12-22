@@ -12,17 +12,12 @@
 	<issueHandlers>
 		<UnusedClass>
 			<errorLevel type="suppress">
-				<!-- this is a class library, therefore some code is unused -->
-				<file name="src/ConvertDate.php" />
-				<file name="src/ConvertTime.php" />
-				<file name="src/ConvertTrailingSlash.php" />
+				<directory name="tests" />
 			</errorLevel>
 		</UnusedClass>
 	</issueHandlers>
     <projectFiles>
         <directory name="src" />
-        <ignoreFiles>
-            <directory name="vendor" />
-        </ignoreFiles>
+		<directory name="tests" />
     </projectFiles>
 </psalm>
