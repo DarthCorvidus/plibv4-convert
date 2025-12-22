@@ -52,11 +52,9 @@ final class ConvertDate implements Convert {
 			$exp = explode(".", $convertee);
 		return array($exp[2], $exp[1], $exp[0]);
 		}
-		if($from==self::US) {
-			$exp = explode("/", $convertee);
-		return array($exp[2], $exp[0], $exp[1]);
-		}
-	throw new \RuntimeException("unknown date format");
+		// only US left
+		$exp = explode("/", $convertee);
+	return array($exp[2], $exp[0], $exp[1]);
 	}
 
 	/**
@@ -76,11 +74,8 @@ final class ConvertDate implements Convert {
 		if($to==self::GERMAN) {
 			return sprintf("%02d.%02d.%d", (int)$iso[2], (int)$iso[1], (int)$iso[0]);
 		}
-
-		if($to==self::US) {
-			return sprintf("%02d/%02d/%d", (int)$iso[1], (int)$iso[2], (int)$iso[0]);
-		}
-	throw new \RuntimeException("unknown date format");
+	// only US left
+	return sprintf("%02d/%02d/%d", (int)$iso[1], (int)$iso[2], (int)$iso[0]);
 	}
 
 	/**
