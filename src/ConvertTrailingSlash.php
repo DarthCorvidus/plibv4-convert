@@ -6,7 +6,9 @@
  * @author Claus-Christoph Küthe <floss@vm01.telton.de>
  * @license LGPL
  */
-
+namespace plibv4\convert;
+use plibv4\assert\Assert;
+use InvalidArgumentException;
 /**
  * ConvertTrailingSlash
  * 

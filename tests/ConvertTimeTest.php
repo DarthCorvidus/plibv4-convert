@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
+namespace plibv4\convert;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 class ConvertTimeTest extends TestCase {
 	function testToSecondsHms() {
 		$convert = new ConvertTime(ConvertTime::HMS, ConvertTime::SECONDS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toSeconds");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array("03:25:41"));
@@ -24,7 +26,7 @@ class ConvertTimeTest extends TestCase {
 
 	function testToSecondsHmsNoSeconds() {
 		$convert = new ConvertTime(ConvertTime::HMS, ConvertTime::SECONDS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toSeconds");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array("03:25"));
@@ -33,7 +35,7 @@ class ConvertTimeTest extends TestCase {
 
 	function testToSecondsHmsOnlyHours() {
 		$convert = new ConvertTime(ConvertTime::HMS, ConvertTime::SECONDS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toSeconds");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array("03"));
@@ -43,7 +45,7 @@ class ConvertTimeTest extends TestCase {
 	
 	function testToSecondsHmsNegative() {
 		$convert = new ConvertTime(ConvertTime::HMS, ConvertTime::SECONDS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toSeconds");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array("-03:25:41"));
@@ -52,7 +54,7 @@ class ConvertTimeTest extends TestCase {
 	
 	function testToSecondsDecimal() {
 		$convert = new ConvertTime(ConvertTime::DECIMAL, ConvertTime::SECONDS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toSeconds");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array("8.25"));
@@ -61,7 +63,7 @@ class ConvertTimeTest extends TestCase {
 
 	function testToResultDecimal() {
 		$convert = new ConvertTime(ConvertTime::SECONDS, ConvertTime::DECIMAL);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toResult");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array(29700));
@@ -70,7 +72,7 @@ class ConvertTimeTest extends TestCase {
 	
 	function testToResultHms() {
 		$convert = new ConvertTime(ConvertTime::SECONDS, ConvertTime::HMS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toResult");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array(12341));
@@ -79,7 +81,7 @@ class ConvertTimeTest extends TestCase {
 
 	function testToResultHmsNegative() {
 		$convert = new ConvertTime(ConvertTime::SECONDS, ConvertTime::HMS);
-		$reflector = new ReflectionClass("ConvertTime");
+		$reflector = new ReflectionClass(ConvertTime::class);
 		$method = $reflector->getMethod("toResult");
 		$method->setAccessible(true);
 		$result = $method->invokeArgs($convert, array(-12341));

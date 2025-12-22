@@ -5,6 +5,9 @@
  * @author Claus-Christoph Küthe
  * @copyright (c) 2020, Claus-Christoph Küthe
  */
+namespace plibv4\convert;
+use plibv4\assert\Assert;
+use InvalidArgumentException;
 final class ConvertDate implements Convert {
 	/** ISO 8601 compliant date (YYYY-MM-DD) */
 	const ISO = 1;
