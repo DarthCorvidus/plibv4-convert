@@ -60,7 +60,7 @@ final class ConvertTimeTest extends TestCase {
 		$convert = new ConvertTime(ConvertTime::DECIMAL, ConvertTime::HMS);
 		$this->assertEquals("04:15:00", $convert->convert("4.25"));
 	}
-	
+
 	function testNegativeDecimalToHms(): void {
 		$convert = new ConvertTime(ConvertTime::DECIMAL, ConvertTime::HMS);
 		$this->assertEquals("-04:15:00", $convert->convert("-4.25"));
@@ -69,6 +69,11 @@ final class ConvertTimeTest extends TestCase {
 	function testDecimalToSeconds(): void {
 		$convert = new ConvertTime(ConvertTime::DECIMAL, ConvertTime::SECONDS);
 		$this->assertEquals("15300", $convert->convert("4.25"));
+	}
+
+	function testDecimalToSecondsInt(): void {
+		$convert = new ConvertTime(ConvertTime::DECIMAL, ConvertTime::SECONDS);
+		$this->assertEquals("14400", $convert->convert("4"));
 	}
 	
 	function testDecimalToDecimal(): void {
