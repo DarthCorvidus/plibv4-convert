@@ -47,10 +47,10 @@ final class ConvertTime implements Convert {
 	 * @return int time as seconds
 	 */
 	private function toSeconds(string $convertee):int {
-		if($this->from==self::SECONDS) {
+		if($this->from === self::SECONDS) {
 			return (int)$convertee;
 		}
-		if($this->from==self::DECIMAL) {
+		if($this->from === self::DECIMAL) {
 			/**
 			 * Only work with float if necessary.
 			 */
@@ -72,7 +72,7 @@ final class ConvertTime implements Convert {
 		if(isset($exp[2])) {
 			$seconds += (int)$exp[2];
 		}
-	return (int)($seconds*$factor);
+	return $seconds*$factor;
 	}
 	
 	/**
@@ -82,11 +82,11 @@ final class ConvertTime implements Convert {
 	 * @return string final output format
 	 */
 	private function toResult(int $seconds): string {
-		if($this->to==self::SECONDS) {
+		if($this->to === self::SECONDS) {
 			return (string)$seconds;
 		}
 		
-		if($this->to==self::DECIMAL) {
+		if($this->to === self::DECIMAL) {
 			return (string)($seconds/3600);
 		}
 		$sign = "";

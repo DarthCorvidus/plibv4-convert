@@ -45,10 +45,10 @@ final class ConvertDate implements Convert {
 	 */
 	static function toArray(int $from, string $convertee): array {
 		Assert::isClassConstant(self::class, $from, "from");
-		if($from==self::ISO) {
+		if($from === self::ISO) {
 			return explode("-", $convertee);
 		}
-		if($from==self::GERMAN) {
+		if($from === self::GERMAN) {
 			$exp = explode(".", $convertee);
 		return array($exp[2], $exp[1], $exp[0]);
 		}
@@ -67,11 +67,11 @@ final class ConvertDate implements Convert {
 	 */
 	static function toResult(int $to, array $iso): string {
 		Assert::isClassConstant(self::class, $to, "to");
-		if($to==self::ISO) {
+		if($to === self::ISO) {
 			return sprintf("%d-%02d-%02d", (int)$iso[0], (int)$iso[1], (int)$iso[2]);
 		}
 		
-		if($to==self::GERMAN) {
+		if($to === self::GERMAN) {
 			return sprintf("%02d.%02d.%d", (int)$iso[2], (int)$iso[1], (int)$iso[0]);
 		}
 	// only US left
@@ -85,8 +85,8 @@ final class ConvertDate implements Convert {
 	 */
 	#[\Override]
 	public function convert(string $convertee): string {
-		$iso = $this->toArray($this->from, $convertee);
-	return $this->toResult($this->to, $iso);
+		$iso = self::toArray($this->from, $convertee);
+	return self::toResult($this->to, $iso);
 	}
 
 }
