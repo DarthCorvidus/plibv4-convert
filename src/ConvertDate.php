@@ -5,7 +5,7 @@
  * @author Claus-Christoph Küthe
  * @copyright (c) 2020, Claus-Christoph Küthe
  */
-class ConvertDate implements Convert {
+final class ConvertDate implements Convert {
 	/** ISO 8601 compliant date (YYYY-MM-DD) */
 	const ISO = 1;
 	/** DIN 5800 compliant date (prior to adoption of ISO 8601, DD.MM.YYYY) */
@@ -85,6 +85,7 @@ class ConvertDate implements Convert {
 	 * @param string $convertee source format.
 	 * @return string target format.
 	 */
+	#[\Override]
 	public function convert(string $convertee): string {
 		$iso = $this->toArray($this->from, $convertee);
 	return $this->toResult($this->to, $iso);

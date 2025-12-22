@@ -14,7 +14,7 @@
  * /mnt/usb-drivefinal are not nice either ;-). ConvertTrailingSlash removes
  * or adds trailing slashes from/to paths.
  */
-class ConvertTrailingSlash implements Convert {
+final class ConvertTrailingSlash implements Convert {
 	const REMOVE = 1;
 	const ADD = 2;
 	/**
@@ -53,6 +53,7 @@ class ConvertTrailingSlash implements Convert {
 	 * @param string $convertee
 	 * @return string
 	 */
+	#[\Override]
 	function convert(string $convertee): string {
 		if($this->format===self::REMOVE) {
 			return $this->convertRemove($convertee);

@@ -19,7 +19,7 @@
  * 
  * Supports negative values such as -09:02:17.
  */
-class ConvertTime implements Convert {
+final class ConvertTime implements Convert {
 	/** Time as seconds */
 	const SECONDS = 0;
 	/** Time as hh:mm:ss; incomplete values such as 08:53 or 08 allowed */
@@ -51,7 +51,14 @@ class ConvertTime implements Convert {
 			return (int)$convertee;
 		}
 		if($this->from==self::DECIMAL) {
-			return (int)round((float)$convertee*3600);
+			/**
+			 * Only work with float if necessary.
+			 */
+			if(str_contains($convertee, ".")) {
+				return (int)round((float)$convertee*3600.0);
+			}
+			$int = (int)$convertee;
+			return $int*3600;
 		}
 		$factor = 1;
 		$exp = explode(":", $convertee);
@@ -104,6 +111,7 @@ class ConvertTime implements Convert {
 	 * @param string $convertee Input format
 	 * @return string Output format
 	 */
+	#[\Override]
 	public function convert(string $convertee): string {
 		if($this->from === $this->to) {
 			return $convertee;
